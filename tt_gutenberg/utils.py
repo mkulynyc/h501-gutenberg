@@ -46,9 +46,9 @@ def count_translations_by_author(authors, metadata, languages, alias=True):
     )
 
     # attach to authors
-    merged = metadata.merge(authors, on="author_id", how="left").merge(
-        lang_counts, on="gutenberg_id", how="left"
-    )
+    merged = metadata.merge(authors, left_on="gutenberg_author_id", right_on="gutenberg_author_id", how="left") \
+                 .merge(lang_counts, on="gutenberg_id", how="left")
+
 
     # translations = languages - 1 (ignore original)
     merged["translations"] = merged["num_languages"].fillna(1) - 1
