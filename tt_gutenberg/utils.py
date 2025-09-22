@@ -2,18 +2,24 @@ import pandas as pd
 
 def load_data():
     """
-    This function loads the authors data from a GitHub repository.
+    This function loads the authors, metadata, and languages data from a GitHub repository.
     
     Arguments:
         None
 
     Returns:
-        pandas DataFrame containing authors data
+        pandas DataFrames containing authors, metadata, and languages data
     """
     authors = pd.read_csv(
         "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-03/gutenberg_authors.csv"
     )
-    return authors
+    metadata = pd.read_csv(
+        "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-03/gutenberg_metadata.csv"
+    )
+    languages = pd.read_csv(
+        "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-03/gutenberg_languages.csv"
+    )
+    return authors, metadata, languages
 
 
 def count_translations_by_author(authors, metadata, languages, alias=True):
