@@ -40,7 +40,7 @@ def count_translations_by_author(authors, metadata, languages, alias=True):
 
     # count number of unique languages per book
     lang_counts = (
-        meta_lang.groupby("gutenberg_id")["language"]
+        meta_lang.groupby("gutenberg_id")["language_y"]
         .nunique()
         .reset_index(name="num_languages")
     )
